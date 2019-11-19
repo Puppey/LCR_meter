@@ -67,7 +67,9 @@ The schematic is available in Eagle in documents folder.
 Project Schematic 
 ----------------------------
 
-![ScreenShot schemtaic](https://github.com/gavinlyonsrepo/LRC_meter/blob/master/documentation/eagle/LRC_meter.png)
+![ScreenShot project sch](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/eagle/LCR_meter.png)
+
+Pinout Connections Tables.
 
 | Arduino Nano | Desc                               | SW Name          |
 |--------------|------------------------------------|------------------|
@@ -156,7 +158,7 @@ value. Therefore we solve for C.
 The result gives two values: Capacitance value and time constant to test in mS.
 The user can adjust the 10K resistor value in code variable(resistorValue) to match exact value, to improve accuracy.
 
-![ScreenShot cap test1](https://github.com/gavinlyonsrepo/LRC_meter/blob/master/documentation/images/cap_test1.png)
+![ScreenShot cap test1](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/cap_test1.png)
 
 **Test 2**
 
@@ -189,14 +191,14 @@ The test displays 3 values
 * Time constant for test in mS
 * Va2 , ADC measurement from 0 to 1023 where 1023 is 5V 
 
-![ScreenShot cap test2](https://github.com/gavinlyonsrepo/LRC_meter/blob/master/documentation/images/cap_test2.png)
+![ScreenShot cap test2](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/cap_test2.png)
 
 **Test 3** 
 
 
 Test 3 Range 0.0047 uF to 180 uF.
 
-![ScreenShot cap test3](https://github.com/gavinlyonsrepo/LRC_meter/blob/master/documentation/images/cap_test3.png)
+![ScreenShot cap test3](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/cap3_test3.png)
 
 A voltage divider is created to give a reference voltage,
 
