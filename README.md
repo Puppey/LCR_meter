@@ -75,7 +75,7 @@ Pinout Connections Tables.
 | D10          | resistor apply Vin                 | ApplyResVoltage  |
 | D9           | resistor range  Upper              | Res1M            |
 | D8           | resistor range  Upper MID          | Res200K          |
-| D7           | Cap test 3 3.18 volt ref           | n/a AIN1         |
+| D7           | Cap test 3 3.16 volt ref           | n/a AIN1         |
 | D6           | Cap test 3 connector               | n/a AIN0         |
 | D5           | Inductor out                       | OutLtestPin      |
 | D4           | inductor in                        | PulseInPinLtest  |
