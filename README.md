@@ -19,26 +19,23 @@ Table of contents
 
   * [Overview](#overview)
   * [Table of contents](#table-of-contents)
-  * [Software](#software)
-  * [Libraries](#libraries)
+  * [Software and Libraries](#software-and-libraries)
   * [Parts List](#parts-list)
   * [Project Schematic](#project-schematic)
   * [Push Button control](#push-button-control)
+  * [Example Output](#example-output)
   * [C Meter](#c-meter)
   * [R Meter](#r-meter)
   * [L Meter](#l-meter)
   * [Copyright](#copyright)
 
-Software
+Software and Libraries
 ------------------
 Arduino 1.8.9
 
 Eagle 9.5.2
 
-Libraries
-------------------------
-
-* LiquidCrystal_I2C.h //V.1.1.2 [link](https://github.com/marcoschwartz/LiquidCrystal_I2C)
+* Only library used for LCD = LiquidCrystal_I2C.h //V.1.1.2 [link](https://github.com/marcoschwartz/LiquidCrystal_I2C)
 
 Parts List
 ------------------------------
@@ -62,7 +59,6 @@ The schematic is available in Eagle in documents folder.
 >
 > ZIF test socket , Output terminal or socket connections
 >
-
 
 Project Schematic 
 ----------------------------
@@ -127,6 +123,18 @@ Tests Modes:
 
 The meter outputs to an LCD and serial monitor.
 (The LCD is optional as data is sent via serial monitor to PC)
+
+Example Output
+-----------------------------
+
+Example output for Capacitor test 2 on a 10uF capacitor to LCD and serial monitor.
+
+![ScreenShot cap lcd1](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterlcd1.jpg)
+
+![ScreenShot cap lcd2](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterlcd2.jpg)
+
+![ScreenShot cap serail](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterserial.jpg)
+
 
 C Meter
 -----------------------------------------------
