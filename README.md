@@ -39,7 +39,7 @@ Eagle 9.5.2
 
 Parts List
 ------------------------------
-The schematic is available in Eagle in documents folder.
+The schematic and BOM is available in documents folder.
 
 >
 >  HD44780-based LCD 16x02 with I2C module 
@@ -57,7 +57,7 @@ The schematic is available in Eagle in documents folder.
 >
 > LM393 comparator IC [datasheet](https://www.onsemi.com/pub/Collateral/LM393-D.PDF) or LM339
 >
-> ZIF test socket , Output terminal or socket connections
+> ZIF test socket 16 pin. 
 >
 
 Project Schematic 
@@ -91,16 +91,24 @@ Pinout Connections Tables.
 | A7           | capacitor test 1 charge pin        | Cap1chargePin    |
 
 
-| Test Socket pin | Name                        | NANO Pin |
-|-----------------|-----------------------------|----------|
-| 1               | C2 test Postive             | A3       |
-| 2               | resistor test Voltage apply | D10      |
-| 3               | C2 test negative A2         | A2       |
-| 4               | resistor test Analog in     | A0       |
-| 5               | C1 test                     | A6       |
-| 6               | Inductor Circuit            | n/a      |
-| 7               | C3 test                     | D6       |
-| 8               | Ground                      | Ground   |
+| Test Socket PCB pin | Name                        | NANO Pin |
+|---------------------|-----------------------------|----------|
+| 1                   | resistor test Voltage apply | D10      |
+| 2                   | n/a                         | n/a      |
+| 3                   | ground                      | ground   |
+| 4                   | ground                      | ground   |
+| 5                   | n/a                         | n/a      |
+| 6                   | n/a                         | n/a      |
+| 7                   | resistor test Analog in     | A0       |
+| 8                   | """                         | """      |
+| 9                   | Inductor Circuit            | n/a      |
+| 10                  | C2 test Postive             | A3       |
+| 11                  | n/a                         | n/a      |
+| 12                  | C2 test negative            | A2       |
+| 13                  | ground                      | ground   |
+| 14                  | ground                      | ground   |
+| 15                  | C3 test                     | D6       |
+| 16                  | C1 test                     | A6       |
 
 
 Push Button control
@@ -131,7 +139,7 @@ Example output for Capacitor test 2 on a 10uF capacitor to LCD and serial monito
 
 ![cap lcd1](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterlcd1.jpg)
 
-![cap lcd2](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRlcd2.jpg)
+![cap lcd2](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCD.jpg)
 
 ![ScreenShot cap serail](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterserial.jpg)
 
