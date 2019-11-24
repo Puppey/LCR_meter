@@ -1,0 +1,24 @@
+Partlist exported from C:/Users/me/Documents/EAGLE/projects/Arduino_projects/LCR_meter/LCR_meter.sch at 24/11/2019 18:48
+
+Part Value                 Device                         Package                 Description                          POPULARITY PROD_ID    SF_SKU    SPICEMODEL SPICEPREFIX
+C2   2uF                   C5/2.5                         C5B2.5                  CAPACITOR                                                                                  
+D1   1N4148                1N4148DO35-10                  DO35-10                 DIODE                                                                                      
+IC1  LM393                 LM393N                         DIL08                   COMPARATOR                                                                                 
+J4   LCD 16X02 I2C HD44780 I2C_STANDARD                   1X04                    SparkFun I2C Standard Pinout Header                                                        
+R1   4.7k                  R0207/10                       0207/10                 RESISTOR, European symbol                                            NONE       R          
+R2   2K                    R0207/10                       0207/10                 RESISTOR, European symbol                                            NONE       R          
+R3   20k                   R0207/10                       0207/10                 RESISTOR, European symbol                                            NONE       R          
+R4   200k                  R0207/10                       0207/10                 RESISTOR, European symbol                                            NONE       R          
+R5   1M                    R0207/10                       0207/10                 RESISTOR, European symbol                                            NONE       R          
+R6   150                   R0207/10                       0207/10                 RESISTOR, European symbol                                            NONE       R          
+R7   330                   R-EU_0207/15                   0207/15                 RESISTOR, European symbol                                                                  
+R8   4.7K                  R0207/10                       0207/10                 RESISTOR, European symbol                                            NONE       R          
+R9   10K                   R-EU_0204/7                    0204/7                  RESISTOR, European symbol                                                       R          
+R10  220                   R-EU_0204/7                    0204/7                  RESISTOR, European symbol                                                       R          
+R11  1.8K                  R-EU_0204/7                    0204/7                  RESISTOR, European symbol                                                       R          
+R12  3.1K                  R-EU_0204/7                    0204/7                  RESISTOR, European symbol                                                       R          
+R13  10K                   R-EU_0204/7                    0204/7                  RESISTOR, European symbol                                                       R          
+S1   SPST Mode button      MOMENTARY-SWITCH-SPST-PTH-12MM TACTILE_SWITCH_PTH_12MM Momentary Switch (Pushbutton) - SPST            SWCH-09185 COM-09190                       
+S2   SPST Test Button      MOMENTARY-SWITCH-SPST-PTH-12MM TACTILE_SWITCH_PTH_12MM Momentary Switch (Pushbutton) - SPST            SWCH-09185 COM-09190                       
+SV1  ZIF test Socket       IC16PL                         IC16PL                  DIL CABLE CONNECTOR                  0                                                     
+U$1  NANO                  NANO                           NANO                    Arduino Nano                                                                               

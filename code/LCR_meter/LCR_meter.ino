@@ -140,9 +140,9 @@ void DisplayHelpMsg()
   delay(1000);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("R1 R2 L1GD"); 
+  lcd.print("R1NCGDGDNCNCR2R2"); 
   lcd.setCursor(0, 1);
-  lcd.print("C2+C2-C1C3");
+  lcd.print("LLC2NCC2GDGDC3C1");
   delay(5000);
   LCDReady();
 }

@@ -129,9 +129,9 @@ Example Output
 
 Example output for Capacitor test 2 on a 10uF capacitor to LCD and serial monitor.
 
-![ScreenShot cap lcd1](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterlcd1.jpg)
+![cap lcd1](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterlcd1.jpg)
 
-![ScreenShot cap lcd2](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterlcd2.jpg)
+![cap lcd2](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRlcd2.jpg)
 
 ![ScreenShot cap serail](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/LCRmeterserial.jpg)
 
