@@ -69,7 +69,7 @@ Pinout Connections Tables.
 
 | Arduino Nano | Desc                               | SW Name          |
 |--------------|------------------------------------|------------------|
-| D13          | capacitor test 1 charge pin        | Cap1dischargePin |
+| D13          | capacitor test 1 charge pin        | Cap1chargePin    |
 | D12          | PUSH button Mode                   | buttonMode       |
 | D11          | Push button TEST                   | buttonTest       |
 | D10          | resistor apply Vin                 | ApplyResVoltage  |
@@ -88,7 +88,7 @@ Pinout Connections Tables.
 | A4           | LCD I2C                            | n/a DATA SDA     |
 | A5           | LCD I2C                            | n/a CLK  SCLK    |
 | A6           | capacitor test 1 ADC               | Cap1analogPin    |
-| A7           | capacitor test 1 charge pin        | Cap1chargePin    |
+| A7           | capacitor test 1 discharge pin     | Cap1dischargePin |
 
 
 | Test Socket PCB pin | Name                        | NANO Pin |
@@ -264,6 +264,8 @@ L Meter
 This tests range is from 80uH to 30,000uH. Ideally the capacitors in circuit must be in specification and measured on a good quality meter. The unknown test inductor is placed in parallel with a capacitor thus creating an LC circuit. 
 
 As soon as the voltage on the LC circuit becomes positive, the LM393 will be floating, which can be pulled high with a pull up resistor. When the voltage on the LC circuit becomes negative, the LM393 will pull its output to ground. 
+
+![ScreenShot l](https://github.com/gavinlyonsrepo/LCR_meter/blob/master/documentation/images/L_TEST.png)
 
 A 5V pulse signal from Arduino is applied to the LC circuit. We charge the circuit for some time. Then we change the voltage from 5 volts directly to 0. That pulse will make the circuit resonate creating a  sinusoidal signal oscillating at the resonant frequency. The frequency is measured and later using the formulas we can obtain the inductance value. We will use the Arduino to measure the frequency and calculate the value. The resonant frequency is measured with the next equation: 
 

@@ -19,7 +19,7 @@
 #define buttonTest 11
 #define buttonMode 12
 
-// Variables to debounce push buttons
+// Variables to debounce the two push buttons
 int buttonTestState;             // the current reading from the input pin
 int lastButtonTestState = HIGH;   // the previous reading from the input pin
 // the following variable are unsigned longs because the time, measured in
@@ -28,10 +28,9 @@ unsigned long lastDebounceTestTime = 0;  // the last time the output pin was tog
 
 int buttonModeState;             // the current reading from the input pin
 int lastButtonModeState = HIGH;   // the previous reading from the input pin
-// the following variable are unsigned longs because the time, measured in
-// milliseconds, will quickly become a bigger number than can be stored in an int.
 unsigned long lastDebounceModeTime = 0;  // the last time the output pin was toggled
-unsigned long debounceDelay = 50;    // the debounce time; 
+
+unsigned long debounceDelay = 50;    // the debounce time;
 
 // Var to hold menu mode
 uint8_t mode = 0;
@@ -49,10 +48,10 @@ uint8_t mode = 0;
 #define OutLtestPin  5 //digital pin input to circuit to "ring" LC circuit
 #define PulseCap2InPinLtest  4 //digital pin to read in pulse
 
-// Pins and vars for C test 1 
+// Pins and vars for C test 1
 #define Cap1analogPin    20
 #define Cap1chargePin    13
-#define Cap1dischargePin 21
+#define Cap1dischargePin 21 //A7
 #define resistorValue  9991.0F // 10K in theory User adjust
 
 // Pins and vars for C test 2
@@ -72,18 +71,18 @@ volatile unsigned long duration;
 
 //Interupt service rountine used by Cap test 3
 ISR (ANALOG_COMP_vect)
-  {
+{
   unsigned long now = micros ();
   if (active)
-    {
+  {
     duration = now - startTime;
     triggered = true;
-    digitalWrite (Cap3pulsePin, LOW); 
-    }
+    digitalWrite (Cap3pulsePin, LOW);
   }
+}
 
 // LCD , initialize the library with the numbers of the interface pins
-LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27, 16, 2); // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 //**************** FUNCTION PROTOTYPES ***********
 void DisplayInit();
@@ -140,7 +139,7 @@ void DisplayHelpMsg()
   delay(1000);
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("R1NCGDGDNCNCR2R2"); 
+  lcd.print("R1NCGDGDNCNCR2R2");
   lcd.setCursor(0, 1);
   lcd.print("LLC2NCC2GDGDC3C1");
   delay(5000);
@@ -201,23 +200,23 @@ void GPIOinit()
   //Inductance test pins
   pinMode(PulseCap2InPinLtest, INPUT);
   pinMode(OutLtestPin, OUTPUT);
-  
+
   // Setup pins for C test 1
   pinMode(Cap1chargePin, OUTPUT);
   digitalWrite(Cap1chargePin, LOW);
-   
+
   // Setup pins for C test 2
   pinMode(Cap2OutPin, OUTPUT);
   pinMode(Cap2InPin, OUTPUT);
-  
+
   // setup for C test3
   pinMode(Cap3pulsePin, OUTPUT);
   digitalWrite(Cap3pulsePin, LOW);
-  
-  // Set up Analog Comparator used by C test 3 
+
+  // Set up Analog Comparator used by C test 3
   ADCSRB = 0; // clear ADCSRB registers
-  // Analog Comparator Interrupt Flag: Clear Pending Interrupt 
-  // Analog Comparator Interrupt: Enabled 
+  // Analog Comparator Interrupt Flag: Clear Pending Interrupt
+  // Analog Comparator Interrupt: Enabled
   // Analog Comparator Interrupt Mode: interrupt on the rising edge
   ACSR =  _BV (ACI)
           | _BV (ACIE)
@@ -322,13 +321,13 @@ void ResScaleFour()
   {
     if (R2 <= 10)
     {
-       Serial.println("Decreasing Scale");
-       mode = 1; //decrease scale
-       printMenuMsg();
-       ResScaleOne(); 
-       return;  
+      Serial.println("Decreasing Scale");
+      mode = 1; //decrease scale
+      printMenuMsg();
+      ResScaleOne();
+      return;
     }
-    PrintResult("M ohms", (R2/1000));
+    PrintResult("M ohms", (R2 / 1000));
   }
 }
 
@@ -346,7 +345,7 @@ float calcResult(float R1, int multi_factor)
   const uint8_t numReadings = 11; // number of analog samples
   int readings[numReadings];      // the readings from the analog input
 
-  // Get 11(numreadings) values from ADC 
+  // Get 11(numreadings) values from ADC
   for (int thisReading = 0; thisReading < numReadings; thisReading++)
   {
     readings[thisReading] = analogRead(analogResPin); // ADC
@@ -355,11 +354,11 @@ float calcResult(float R1, int multi_factor)
       V_measured  = V_measured + readings[thisReading]; //running total
     }
   }
-  V_measured = (V_measured /(numReadings-1)); // average
-  
+  V_measured = (V_measured / (numReadings - 1)); // average
+
   Vout = (V_measured * Vin) / 1024.0; //Convert ADC to voltage
   tmpbuffer = (Vin / Vout) - 1; //voltage divider (VIN/VOUT -1)
-  R2 = R1 * tmpbuffer * multi_factor;  // R2 = R1(Vin/Vout -1) 
+  R2 = R1 * tmpbuffer * multi_factor;  // R2 = R1(Vin/Vout -1)
   return R2;
 }
 
@@ -370,7 +369,7 @@ void printMenuMsg()
   lcd.setCursor(0, 0);
   switch (mode)
   {
-    case (0): // Ready message 
+    case (0): // Ready message
       __asm__("nop\n\t");
       break;
     case (1):
@@ -414,52 +413,52 @@ void printMenuMsg()
       Serial.println("Capacitance Test Three");
       Serial.println("4.7 nF to 180 uF");
       break;
-    case(9):
-         LCDReady();
-    break;
+    case (9):
+      LCDReady();
+      break;
     case (10):
       lcd.print("Out of Scale");
       Serial.println("Out of scale");
       delay(1500);
       LCDReady();
-    break;
+      break;
   }
 }
 
 //Function to run tests when test button pressed also
-//Displays help message if in mode 0 
+//Displays help message if in mode 0
 void TestRun()
 {
-    switch (mode)
-    {  
+  switch (mode)
+  {
     case (0):
-        DisplayHelpMsg();
+      DisplayHelpMsg();
       break;
     case (1):
-        ResScaleOne();
+      ResScaleOne();
       break;
     case (2):
-        ResScaleTwo();
+      ResScaleTwo();
       break;
     case (3):
-        ResScaleThree();
+      ResScaleThree();
       break;
     case (4):
-        ResScaleFour();
+      ResScaleFour();
       break;
     case (5):
-        Ltest();
+      Ltest();
       break;
     case (6):
-       CAPTestOne();
+      CAPTestOne();
       break;
     case (7):
-       CAPTestTwo();
+      CAPTestTwo();
       break;
     case (8):
-       CAPTestThree();
+      CAPTestThree();
       break;
-    }
+  }
 }
 
 //Function PrintResult : Print calculated resistor value and unit to serial monitor
@@ -489,7 +488,7 @@ void Ltest()
   delayMicroseconds(100); //make sure resonation is measured
   pulse = pulseIn(PulseCap2InPinLtest, HIGH, 5000); //returns 0 if timeout
   if (pulse > 0.1) { //pulse returns 0 if no complete pulse was received within the timeout
-     
+
     capacitance = 2.E-6; // - insert Cap value here
 
     frequency = 1.E6 / (2 * pulse);
@@ -505,15 +504,15 @@ void Ltest()
   Serial.print("inductance uH:");
   Serial.println( inductance );
 
-  lcd.setCursor(0,0);
+  lcd.setCursor(0, 0);
   lcd.print(inductance);
   lcd.print("uH ");
-  lcd.setCursor(0,1);
+  lcd.setCursor(0, 1);
   lcd.print(frequency);
   lcd.print("Hz ");
   lcd.print(pulse);
   lcd.print("uS ");
-  
+
   delay(4000);
   printMenuMsg();
 }
@@ -536,8 +535,8 @@ void CAPTestOne()
   // Calculate and display value, c = TC/R
   uF = ((float)elapsedTime / resistorValue) * 1000;
   DisplayTime(elapsedTime);
-   lcd.setCursor(0,1);
-   if (uF > 1) {
+  lcd.setCursor(0, 1);
+  if (uF > 1) {
     Serial.print((long)uF);
     Serial.println(" microFarads");
     lcd.print((long)uF);
@@ -644,11 +643,11 @@ void CAPTestTwo()
     Serial.print(val);
     Serial.println(F(")"));
     lcd.print(" A=");
-    lcd.print(val);  
+    lcd.print(val);
     lcd.setCursor(0, 1);
     lcd.print("t=");
     lcd.print(t);
-    lcd.print("uS");   
+    lcd.print("uS");
   }
   while (millis() % 1000 != 0);
   delay(4000);
@@ -657,21 +656,21 @@ void CAPTestTwo()
 
 //Function to carry out Test3
 void CAPTestThree(void)
-  
-  {
+
+{
   boolean exitloop = false;
-  while(exitloop != true)
+  while (exitloop != true)
   {
     if (!active)
-      {
+    {
       active = true;
       triggered = false;
-      digitalWrite (Cap3pulsePin, HIGH); 
-      startTime = micros ();  
-      }
-  
+      digitalWrite (Cap3pulsePin, HIGH);
+      startTime = micros ();
+    }
+
     if (active && triggered)
-      {
+    {
       active = false;
       Serial.print ("Capacitance = ");
       Serial.print (duration * 1000 / resistance);
@@ -689,11 +688,11 @@ void CAPTestThree(void)
       lcd.print("t = ");
       lcd.print(duration);
       lcd.print(" uS");
-      
+
       delay (4000);
       printMenuMsg();
-      exitloop = true; //exit when test finished. 
-      }
+      exitloop = true; //exit when test finished.
+    }
   }
 }
 
@@ -712,7 +711,7 @@ void DisplayTime(unsigned long elaspedTime)
 // If debounced succesfully increment mode variable and change menu mode display
 void ReadPushButtonMode()
 {
-   // read and debounce push button.
+  // read and debounce push button.
   int reading = digitalRead(buttonMode);
   // If the switch changed?
   if (reading != lastButtonModeState) {
@@ -738,7 +737,7 @@ void ReadPushButtonMode()
 // If debounced and succesful read, start the test by calling Testrun();
 void ReadPushButtonTest()
 {
-   // read and debounce push button.
+  // read and debounce push button.
   int reading = digitalRead(buttonTest);
   // If the switch changed?
   if (reading != lastButtonTestState) {
