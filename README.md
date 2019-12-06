@@ -9,7 +9,7 @@ Overview
 	* Inductance test, range is 80uH to 30,000uH.
 	* Capacitance three tests , range 18pf to 4F. 
 	* Push button input.
-	* Outputs data to serial monitor and LCD 16x02.
+	* Outputs data to serial monitor and a HD44780 LCD 16x02.
 
 * Platform: Arduino NANO version 3.0
 * Author: Gavin Lyons
@@ -22,7 +22,7 @@ Table of contents
   * [Software and Libraries](#software-and-libraries)
   * [Parts List](#parts-list)
   * [Project Schematic](#project-schematic)
-  * [Push Button control](#push-button-control)
+  * [Control](#control)
   * [Example Output](#example-output)
   * [C Meter](#c-meter)
   * [R Meter](#r-meter)
@@ -42,12 +42,12 @@ Parts List
 The schematic and BOM is available in documents folder.
 
 >
->  HD44780-based LCD 16x02 with I2C module 
+>  HD44780-based LCD 16x02 with I2C PCF8574 interface module 
 >
 > Arduino NANO  micro-controller module Version 3.0
 >
-> Resistors: 2kohms, 20kohms, 200kohms, 1Mohms, 150ohm, 330ohm, 4.7Kohms X 2 .
-> Resistors: Cap Test2(10Kohm and 220ohm) , Cap Test3(10K, 3.1K, 1.8K)
+> Resistors: 2kohms, 20kohms, 200kohms, 1Mohms, 150ohm, 330ohm, 4.7Kohms X 2 ,
+> Cap Test2(10Kohm and 220ohm) , Cap Test3(10K, 3.1K, 1.8K)
 >
 > Capacitors: 2 uF non-polarized  
 >
@@ -55,7 +55,7 @@ The schematic and BOM is available in documents folder.
 >
 > Diode: 1N4001 or IN4148
 >
-> LM393 comparator IC [datasheet](https://www.onsemi.com/pub/Collateral/LM393-D.PDF) or LM339
+> LM393 comparator IC [datasheet](https://www.onsemi.com/pub/Collateral/LM393-D.PDF) 
 >
 > ZIF test socket 16 pin. 
 >
@@ -75,20 +75,20 @@ Pinout Connections Tables.
 | D10          | resistor apply Vin                 | ApplyResVoltage  |
 | D9           | resistor range  Upper              | Res1M            |
 | D8           | resistor range  Upper MID          | Res200K          |
-| D7           | Cap test 3 3.16 volt ref           | n/a AIN1         |
-| D6           | Cap test 3 connector               | n/a AIN0         |
+| D7           | Cap test 3 volt ref                | AIN1         |
+| D6           | Cap test 3 connector               | AIN0         |
 | D5           | Inductor out                       | OutLtestPin      |
 | D4           | inductor in                        | PulseInPinLtest  |
 | D3           | resistor range   lower MID         | Res20K           |
 | D2           | resistor range   Lower             | Res2K            |
-| A0           | Resistor Test analog read          | analogResPin     |
+| A0           | capacitor test 1 discharge pin     | Cap1dischargePin |
 | A1           | Cap test 3  pulse pin              | Cap3pulsePin     |
-| A2           | capacitor test 2 negative          | Cap2InPin        |
-| A3           | capacitor test 2 positive          | Cap2OutPin       |
-| A4           | LCD I2C                            | n/a DATA SDA     |
-| A5           | LCD I2C                            | n/a CLK  SCLK    |
+| A2           | capacitor test 2 negative  ADC     | Cap2InPin        |
+| A3           | capacitor test 2 positive  ADC     | Cap2OutPin       |
+| A4           | LCD SDA I2C                        | DATA SDA     |
+| A5           | LCD CLK I2C                        | CLK  SCLK    |
 | A6           | capacitor test 1 ADC               | Cap1analogPin    |
-| A7           | capacitor test 1 discharge pin     | Cap1dischargePin |
+| A7           | Resistor Test  ADC                 | analogResPin     |
 
 
 | Test Socket PCB pin | Name                        | NANO Pin |
@@ -99,7 +99,7 @@ Pinout Connections Tables.
 | 4                   | ground                      | ground   |
 | 5                   | n/a                         | n/a      |
 | 6                   | n/a                         | n/a      |
-| 7                   | resistor test Analog in     | A0       |
+| 7                   | resistor test Analog in     | A7       |
 | 8                   | """                         | """      |
 | 9                   | Inductor Circuit            | n/a      |
 | 10                  | C2 test Postive             | A3       |
@@ -111,7 +111,7 @@ Pinout Connections Tables.
 | 16                  | C1 test                     | A6       |
 
 
-Push Button control
+Control
 -------------------------------
 
 Push Buttons
@@ -131,6 +131,7 @@ Tests Modes:
 
 The meter outputs to an LCD and serial monitor.
 (The LCD is optional as data is sent via serial monitor to PC)
+Every point in code that requires User calibration on Initial build is marked "USER CALIBRATE"
 
 Example Output
 -----------------------------

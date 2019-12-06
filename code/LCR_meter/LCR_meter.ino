@@ -30,13 +30,13 @@ int buttonModeState;             // the current reading from the input pin
 int lastButtonModeState = HIGH;   // the previous reading from the input pin
 unsigned long lastDebounceModeTime = 0;  // the last time the output pin was toggled
 
-unsigned long debounceDelay = 50;    // the debounce time;
+unsigned long debounceDelay = 50;    // the debounce time USER CALIBRATE;
 
 // Var to hold menu mode
 uint8_t mode = 0;
 
 // resistor test pin numbers
-#define analogResPin  14 //analog pin read for resistor test
+#define analogResPin 21 //analog pin A7 for resistor test
 #define ApplyResVoltage  10  //digital pin to unknown resistor,  apply 5V
 // Known Resistors connected to these 4 digital pins
 #define Res2K  2
@@ -51,13 +51,13 @@ uint8_t mode = 0;
 // Pins and vars for C test 1
 #define Cap1analogPin    20
 #define Cap1chargePin    13
-#define Cap1dischargePin 21 //A7
-#define resistorValue  9991.0F // 10K in theory User adjust
+#define Cap1dischargePin 14 // A0
+#define resistorValue  9993.0F // 10K in theory USER CALIBRATE
 
 // Pins and vars for C test 2
 #define Cap2OutPin  17
 #define Cap2InPin  16
-const float CapOne = 24.51; //user calibrate
+const float CapOne = 24.59; // USER CALIBRATE
 const float Res_Pullup = 34.9;
 const int MaxADC_Value = 1023;
 
@@ -153,7 +153,7 @@ void DisplayInit()
   lcd.backlight();
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("LCR Meter V 1.0");
+  lcd.print("LCR Meter V 1.1");
   lcd.setCursor(0, 1);
   lcd.print("By Gavin Lyons");
   delay(1000);
@@ -233,7 +233,7 @@ void ResScaleOne()
   pinMode(Res1M, INPUT);
   digitalWrite(Res2K, LOW);
   float R2 = 0;
-  float R1 = 2.005; // Set this value to the value of the used resistor in K ohms
+  float R1 = 2.005; // USER CALIBRATE Set this value to the value of the used resistor in K ohms
   R2 = calcResult(R1, 1000);
   if (R2 > (R1 * 1000))
   {
@@ -259,7 +259,7 @@ void ResScaleTwo()
   pinMode(Res1M, INPUT);
   digitalWrite(Res20K, LOW);
   float R2 = 0;
-  float R1 = 18.3; // Set this value to the value of the used resistor in K ohms
+  float R1 = 18.3; // USER CALIBRATE Set this value to the value of the used resistor in K ohms
   R2 = calcResult(20.03, 1);
   if (R2 > R1)
   {
@@ -285,7 +285,7 @@ void ResScaleThree()
   pinMode(Res1M, INPUT);
   digitalWrite(Res200K, LOW);
   float R2 = 0;
-  float R1 = 218; // Set this value to the value of the used resistor in K ohms
+  float R1 = 210; // USER CALIBRATE Set this value to the value of the used resistor in K ohms
   R2 = calcResult(R1, 1);
   if (R2 > R1)
   {
